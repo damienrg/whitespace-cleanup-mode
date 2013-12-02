@@ -104,7 +104,8 @@ enabled."
   (when (and whitespace-cleanup-mode
              (not buffer-read-only)
              (or (not whitespace-cleanup-mode-only-if-initially-clean)
-                 whitespace-cleanup-mode-initially-clean))
+                 (setq whitespace-cleanup-mode-initially-clean
+                         (whitespace-cleanup-mode-file-is-clean-p))))
     (let ((whitespace-action (or whitespace-action '(auto-cleanup))))
       (whitespace-write-file-hook))))
 
