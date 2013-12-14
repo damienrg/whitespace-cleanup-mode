@@ -150,12 +150,12 @@ enabled."
 (defun whitespace-cleanup-mode-write-file ()
   "Function added to `write-file-functions'."
   (if (and whitespace-cleanup-mode
-           (not buffer-read-only)
-           (or (not whitespace-cleanup-mode-only-if-initially-clean)
-               whitespace-cleanup-mode-initially-clean))
-      (let ((whitespace-action (or whitespace-action '(auto-cleanup))))
-        (whitespace-write-file-hook))
-    (whitespace-cleanup-mode-diff-cleanup)))
+	   (not buffer-read-only))
+      (if (or (not whitespace-cleanup-mode-only-if-initially-clean)
+	      whitespace-cleanup-mode-initially-clean)
+	  (let ((whitespace-action (or whitespace-action '(auto-cleanup))))
+	    (whitespace-write-file-hook))
+	(whitespace-cleanup-mode-diff-cleanup))))
 
 
 (provide 'whitespace-cleanup-mode)
