@@ -72,7 +72,7 @@
 
 (defun whitespace-cleanup-mode-diff-cleanup ()
   (let ((old-filename (buffer-file-name))
-        (new-filename (make-temp-name "/tmp/whitespace"))
+	(new-filename (make-temp-name "whitespace"))
         (my-buffer (current-buffer))
         diff-result
         saved-position)
